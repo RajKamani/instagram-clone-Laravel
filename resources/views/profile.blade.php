@@ -11,11 +11,11 @@
                     <div class="profile__name">
                         <h1 class="profile__title">{{$user->username}}</h1>
                         <a href="edit-profile.html" class="profile__button u-fat-text">Edit profile</a>
-                        <i class="fa fa-cog fa-2x" id="cog"></i>
+                        <a href="{{route('upload.show',$user->username)}}" class="text-decoration-none">Post Image</a>
                     </div>
                     <ul class="profile__numbers">
                         <li class="profile__posts">
-                            <span class="profile__number u-fat-text">10</span> posts
+                            <span class="profile__number u-fat-text">{{$user->posts()->count()}}</span> posts
                         </li>
                         <li class="profile__followers">
                             <span class="profile__number u-fat-text">40</span> followers
@@ -32,72 +32,13 @@
                 </div>
             </header>
             <div class="profile__pictures">
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="/images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="/images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="/images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
-                <a href="image-detail.html" class="profile-picture">
-                    <img src="images/feedPhoto.jpg" class="profile-picture__picture">
-                    <div class="profile-picture__overlay">
-                            <span class="profile-picture__number">
-                                <i class="fa fa-heart"></i> 450
-                            </span>
-                        <span class="profile-picture__number">
-                                <i class="fa fa-comment"></i> 39
-                            </span>
-                    </div>
-                </a>
+                @if($user->posts->count() > 0)
+                    @foreach($user->posts as $post)
+                        @include('image_profile',$post)
+                    @endforeach
+                @else
+                    <div style="text-align: center;padding-left: 50%"><p class="text-danger">No post yet.</p></div>
+                @endif
             </div>
         </section>
     </main>

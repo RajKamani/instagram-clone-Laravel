@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,16 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/profile.html', function () {
-    return view('profile');
-});
-Route::get('/explore.html', function () {
-    return view('explore');
-});
 
 Auth::routes();
 
+Route::middleware('auth')->group( function (){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
+    Route::get('/{user:username}/upload', [UploadController::class, 'show'])->name('upload.show');
+    Route::post('/{user:username}', [UploadController::class, 'store'])->name('upload.store');
+});
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
 

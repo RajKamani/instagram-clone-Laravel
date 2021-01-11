@@ -22,6 +22,7 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('file')
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         li {
@@ -32,48 +33,48 @@
 <body>
 <div id="app">
     @auth
-    <nav class="navigation">
-        <a href="feed.html">
-            <img src="/images/navLogo.png" alt="logo" title="logo" class="navigation__logo">
-        </a>
-        <div class="navigation__search-container">
-            <i class="fa fa-search"></i>
-            <input type="text" placeholder="Search">
-        </div>
-        <div class="navigation__icons d-flex align-items-center">
-            <form method="post" action="{{route('logout')}}">
-                @csrf
-                <button class="small btn btn-danger" type="submit">Logout</button>
-
-            </form>
-            <a href="explore.html" class="navigation__link">
-                <i class="fa fa-compass"></i>
+        <nav class="navigation">
+            <a href="feed.html">
+                <img src="/images/navLogo.png" alt="logo" title="logo" class="navigation__logo">
             </a>
-            <a href="#" class="navigation__link">
-                <i class="fa fa-heart-o"></i>
-            </a>
-            <a href="{{route('profile.show',auth()->user()->username)}}" class="navigation__link">
-                <i class="fa fa-user-o"></i>
-            </a>
-
-        </div>
-    </nav>
-    @endauth
-            <div class="mt-0 d-flex">
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @endguest
+            <div class="navigation__search-container">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search">
             </div>
+            <div class="navigation__icons d-flex align-items-center">
+                <form method="post" action="{{route('logout')}}">
+                    @csrf
+                    <button class="small btn btn-danger" type="submit">Logout</button>
+
+                </form>
+                <a href="explore.html" class="navigation__link">
+                    <i class="fa fa-compass"></i>
+                </a>
+                <a href="#" class="navigation__link">
+                    <i class="fa fa-heart-o"></i>
+                </a>
+                <a href="{{route('profile.show',auth()->user()->username)}}" class="navigation__link">
+                    <i class="fa fa-user-o"></i>
+                </a>
+
+            </div>
+        </nav>
+    @endauth
+    <div class="mt-0 d-flex">
+        @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+            @endif
+
+            @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @endif
+        @endguest
+    </div>
 
 </div>
 
