@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class)->orderBy('created_at','DESC');
     }
+
+    protected static function boot()  // Load every time when this model Load. so create profile for THIS user.
+    {
+        parent::boot();
+        static::created(function ($user){
+            $user->profile()->create([
+                'avatar'=>'/storage/avatars/default_avatar.jpg'
+            ]);
+        });
+    }
 }

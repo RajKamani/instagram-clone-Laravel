@@ -5,7 +5,8 @@
         <section class="profile">
             <header class="profile__header">
                 <div class="profile__avatar-container">
-                    <img src="images/avatar.jpg">
+                    <img class="profile__avatar" src="{{$user->profile->avatar}}" alt="Your Avatar">
+
                 </div>
                 <div class="profile__info">
                     <div class="profile__name">
