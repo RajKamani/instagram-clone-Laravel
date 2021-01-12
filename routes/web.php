@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageViewController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::middleware('auth')->group( function (){
@@ -28,6 +30,8 @@ Route::middleware('auth')->group( function (){
     Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
     Route::get('/profile/{user:username}/update', [ProfilesController::class, 'profile_show'])->name('profile.update.show');
     Route::patch('/profile/u/{user:username}', [ProfilesController::class, 'update'])->name('profile.update');
+
+    Route::get('/post/{post}', [ImageViewController::class, 'show'])->name('image.show');
 
     Route::get('/{user:username}/upload', [UploadController::class, 'show'])->name('upload.show');
     Route::post('/{user:username}', [UploadController::class, 'store'])->name('upload.store');

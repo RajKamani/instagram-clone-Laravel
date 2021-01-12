@@ -29,6 +29,7 @@
             list-style-type: none;
         }
     </style>
+    <script src="http://unpkg.com/turbolinks"></script>
 </head>
 <body>
 <div id="app">
