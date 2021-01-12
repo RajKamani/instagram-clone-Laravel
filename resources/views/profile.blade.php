@@ -11,8 +11,10 @@
                 <div class="profile__info">
                     <div class="profile__name">
                         <h1 class="profile__title">{{$user->username}}</h1>
+                        @can('update',$user->profile)
                         <a href="{{route('profile.update.show',$user->username)}}" class="profile__button u-fat-text">Edit profile</a> {{--TODO: Edit Profile--}}
                         <a href="{{route('upload.show',$user->username)}}" class="text-decoration-none">Post Image</a>
+                        @endcan
                     </div>
                     <ul class="profile__numbers">
                         <li class="profile__posts">

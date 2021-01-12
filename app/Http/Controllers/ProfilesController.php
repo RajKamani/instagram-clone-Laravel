@@ -14,11 +14,13 @@ class ProfilesController extends Controller
 
     function profile_show(User $user)
     {
+        $this->authorize('update',$user->profile);
         return view('Edit_profile', ['user' => $user]);
     }
 
     function update(User $user)
     {
+        $this->authorize('update',$user->profile);
 
         $data = \request()->validate([
             'name' => ['required', 'string', 'max:255'],
