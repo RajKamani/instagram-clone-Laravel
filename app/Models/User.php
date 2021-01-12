@@ -58,7 +58,7 @@ class User extends Authenticatable
         parent::boot();
         static::created(function ($user){
             $user->profile()->create([
-                'avatar'=>'/storage/avatars/default_avatar.jpg'
+                'avatar'=>'storage/avatars/default_avatar.jpg'
             ]);
         });
     }

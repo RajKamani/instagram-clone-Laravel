@@ -26,8 +26,12 @@ Auth::routes();
 Route::middleware('auth')->group( function (){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
+    Route::get('/profile/{user:username}/update', [ProfilesController::class, 'profile_show'])->name('profile.update.show');
+    Route::patch('/profile/u/{user:username}', [ProfilesController::class, 'update'])->name('profile.update');
+
     Route::get('/{user:username}/upload', [UploadController::class, 'show'])->name('upload.show');
     Route::post('/{user:username}', [UploadController::class, 'store'])->name('upload.store');
+
 });
 
 

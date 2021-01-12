@@ -5,13 +5,13 @@
         <section class="profile">
             <header class="profile__header">
                 <div class="profile__avatar-container">
-                    <img class="profile__avatar" src="{{$user->profile->avatar}}" alt="Your Avatar">
+                    <img class="profile__avatar" src="{{'/'.$user->profile->avatar}}" alt="Your Avatar">
 
                 </div>
                 <div class="profile__info">
                     <div class="profile__name">
                         <h1 class="profile__title">{{$user->username}}</h1>
-                        <a href="edit-profile.html" class="profile__button u-fat-text">Edit profile</a>
+                        <a href="{{route('profile.update.show',$user->username)}}" class="profile__button u-fat-text">Edit profile</a> {{--TODO: Edit Profile--}}
                         <a href="{{route('upload.show',$user->username)}}" class="text-decoration-none">Post Image</a>
                     </div>
                     <ul class="profile__numbers">
@@ -28,7 +28,7 @@
                     <div class="profile__bio">
                         <span class="profile__full-name u-fat-text">{{$user->name}}</span>
                         <p class="profile__full-bio">{{$user->profile->bio ?$user->profile->bio:'No bio'}}</p><br>
-                        <a href="http://serranoarevalo.com" class="profile__link u-fat-text">serranoarevalo.com</a>
+                        <a href="http://serranoarevalo.com" class="profile__link u-fat-text">{{$user->profile->link}}</a>
                     </div>
                 </div>
             </header>
