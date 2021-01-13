@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="profile-container">
+    <script src="{{ asset('js/app.js') }}"></script>
+    <main class="profile-container" >
         <section class="profile">
             <header class="profile__header">
                 <div class="profile__avatar-container">
@@ -18,16 +19,24 @@
                             <a href="{{route('upload.show',$user->username)}}"
                                class=" profile__button u-fat-text text-decoration-none">Post Image</a>
                         @endcan
+
+                        @if(auth()->user()->isNot($user))
+                            <form method="post" action= "{{route('follow',$user->username)}}">
+                                @csrf
+                                <button type="submit"
+                                        class="btn btn-primary rounded-pill">{{ auth()->user()->is_following($user)? 'Unfollow': 'Follow'  }}</button>
+                            </form>
+                        @endif
                     </div>
                     <ul class="profile__numbers">
                         <li class="profile__posts">
                             <span class="profile__number u-fat-text">{{$user->posts()->count()}}</span> posts
                         </li>
                         <li class="profile__followers">
-                            <span class="profile__number u-fat-text">40</span> followers
+                            <span class="profile__number u-fat-text">{{$user->profile->followers->count()}}</span> followers
                         </li>
                         <li class="profile__following">
-                            <span class="profile__number u-fat-text">134</span> following
+                            <span class="profile__number u-fat-text">{{$user->following->count()}}</span> following
                         </li>
                     </ul>
                     <div class="profile__bio">

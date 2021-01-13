@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     {{-- <link href="css/style.css" rel="stylesheet">--}}
     <meta name="viewport"
@@ -82,7 +82,8 @@
 <main class="py-4">
     @yield('content')
 </main>
-
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
+
 </html>
 

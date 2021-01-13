@@ -53,6 +53,17 @@ class User extends Authenticatable
         return $this->hasMany(Post::class)->orderBy('created_at','DESC');
     }
 
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+    public function is_following(User $user)
+    {
+        return $this->following->pluck('id')->contains($user->id);
+
+    }
+
+
     protected static function boot()  // Load every time when this model Load. so create profile for THIS user.
     {
         parent::boot();
