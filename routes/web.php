@@ -27,7 +27,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group( function (){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/feed', [HomeController::class, 'index'])->name('home');
     Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
     Route::get('/profile/{user:username}/update', [ProfilesController::class, 'profile_show'])->name('profile.update.show');
     Route::patch('/profile/u/{user:username}', [ProfilesController::class, 'update'])->name('profile.update');
