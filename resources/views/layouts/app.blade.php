@@ -48,7 +48,7 @@
                     <button class="small btn btn-danger" type="submit">Logout</button>
 
                 </form>
-                <a href="explore.html" class="navigation__link">
+                <a href="{{route('explore')}}" class="navigation__link">
                     <i class="fa fa-compass"></i>
                 </a>
                 <a href="#" class="navigation__link">
