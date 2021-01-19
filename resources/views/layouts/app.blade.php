@@ -43,11 +43,7 @@
                 <input type="text" placeholder="Search">
             </div>
             <div class="navigation__icons d-flex align-items-center">
-                <form method="post" action="{{route('logout')}}">
-                    @csrf
-                    <button class="small btn btn-danger" type="submit">Logout</button>
 
-                </form>
                 <a href="{{route('explore')}}" class="navigation__link">
                     <i class="fa fa-compass"></i>
                 </a>

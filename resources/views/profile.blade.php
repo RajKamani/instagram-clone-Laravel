@@ -10,9 +10,18 @@
 
                 </div>
                 <div class="profile__info">
-                    <div class="profile__name">
+                    <div class="profile__name align-items-center">
                         <h1 class="profile__title">{{$user->username}}</h1>
                         @can('update',$user->profile)
+                            <form method="post" action="{{route('logout')}}">
+                                @csrf
+
+                                    <button class="mr-1 "
+                                            style="border: none; background-color:#FAFAFA" type="submit">
+                                        <i class="fa fa-sign-out fa-2x" style="color: gray" aria-hidden="true"></i>
+                                    </button>
+
+                            </form>
                             <a href="{{route('profile.update.show',$user->username)}}"
                                class="profile__button u-fat-text text-decoration-none">Edit
                                 profile</a> {{--TODO: Edit Profile--}}

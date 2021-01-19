@@ -47,5 +47,6 @@
         @empty
             <p class="text-info font-weight-bold" >No Post yet !</p>
         @endforelse
+        <div>{{$posts->links("pagination::bootstrap-4")}}</div>
     </main>
 @endsection

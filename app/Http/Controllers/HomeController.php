@@ -25,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $users= auth()->user()->following()->pluck('profiles.id');
-        $posts= Post::whereIn('user_id',$users)->with('user')->latest()->get();
+        $users=$users->push(auth()->user()->id);
+        $posts= Post::whereIn('user_id',$users)->with('user')->latest()->paginate(5);
         return view('home',compact('posts'));
     }
 }
