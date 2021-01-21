@@ -29,18 +29,43 @@
             list-style-type: none;
         }
     </style>
+    <script>
+        function handle(e) {
+            if (e.keyCode === 13) {
+                e.preventDefault(); // Ensure it is only this code that runs
+
+                alert("Enter was pressed was presses");
+                var x = document.getElementById("searchtxt").value;
+                /* loadDoc(x);*/
+            }
+        }
+
+        /*
+                function loadDoc(x) {
+
+                    var xhttp = new XMLHttpRequest();
+
+                    xhttp.open("get","/find/"+x, true);
+                    xhttp.send();
+                }*/
+    </script>
     <script src="http://unpkg.com/turbolinks"></script>
 </head>
 <body>
 <div id="app">
     @auth
         <nav class="navigation">
-            <a href="feed.html">
+            <a href="{{route('home')}}">
                 <img src="/images/navLogo.png" alt="logo" title="logo" class="navigation__logo">
             </a>
             <div class="navigation__search-container">
                 <i class="fa fa-search"></i>
-                <input type="text" placeholder="Search">
+
+                <form id="myform" method="get">
+                    @csrf
+                    <input type="text" id="searchtxt" placeholder="Search" onkeypress="handle(event)">
+                </form>
+
             </div>
             <div class="navigation__icons d-flex align-items-center">
 
@@ -57,21 +82,6 @@
             </div>
         </nav>
     @endauth
-    <div class="mt-0 d-flex">
-        @guest
-            @if (Route::has('login'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-            @endif
-
-            @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-            @endif
-        @endguest
-    </div>
 
 </div>
 

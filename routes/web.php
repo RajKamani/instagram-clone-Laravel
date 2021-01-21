@@ -4,7 +4,9 @@ use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageViewController;
+use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +32,7 @@ Auth::routes();
 Route::middleware('auth')->group( function (){
     Route::get('/feed', [HomeController::class, 'index'])->name('home');
     Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+
     Route::get('/profile/{user:username}', [ProfilesController::class, 'show'])->name('profile.show');
     Route::get('/profile/{user:username}/update', [ProfilesController::class, 'profile_show'])->name('profile.update.show');
     Route::patch('/profile/u/{user:username}', [ProfilesController::class, 'update'])->name('profile.update');
@@ -39,7 +42,8 @@ Route::middleware('auth')->group( function (){
 
     Route::get('/{user:username}/upload', [UploadController::class, 'show'])->name('upload.show');
     Route::post('/{user:username}', [UploadController::class, 'store'])->name('upload.store');
-
+    Route::get('/find/{user:username}', [SearchController::class, 'index'])->name('search');
+    Route::post('/post/{post}/like', [PostLikesController::class, 'store'])->name('like');
 });
 
 

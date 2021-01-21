@@ -62,6 +62,10 @@ class User extends Authenticatable
         return $this->following->pluck('id')->contains($user->id);
 
     }
+    public function likes() //User has many Likes
+    {
+        return $this->hasMany(Like::class);
+    }
 
 
     protected static function boot()  // Load every time when this model Load. so create profile for THIS user.

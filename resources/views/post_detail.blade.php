@@ -22,7 +22,7 @@
                     <img src="{{"/".$post->user->profile->avatar}}"
                          class="profile-form__avatar mr-2">
                     <p class="font-weight-bold ml-2">{{$post->user->username}}</p>
-                    <a href="" class="ml-3 text-decoration-none">Follow</a>
+
                 </div>
                 <p class="mt-3">{{$post->caption}}</p>
             </div>
