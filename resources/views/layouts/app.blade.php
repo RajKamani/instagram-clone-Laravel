@@ -29,27 +29,8 @@
             list-style-type: none;
         }
     </style>
-    <script>
-        function handle(e) {
-            if (e.keyCode === 13) {
-                e.preventDefault(); // Ensure it is only this code that runs
-
-                alert("Enter was pressed was presses");
-                var x = document.getElementById("searchtxt").value;
-                /* loadDoc(x);*/
-            }
-        }
-
-        /*
-                function loadDoc(x) {
-
-                    var xhttp = new XMLHttpRequest();
-
-                    xhttp.open("get","/find/"+x, true);
-                    xhttp.send();
-                }*/
-    </script>
     <script src="http://unpkg.com/turbolinks"></script>
+
 </head>
 <body>
 <div id="app">
@@ -61,9 +42,8 @@
             <div class="navigation__search-container">
                 <i class="fa fa-search"></i>
 
-                <form id="myform" method="get">
-                    @csrf
-                    <input type="text" id="searchtxt" placeholder="Search" onkeypress="handle(event)">
+                <form id="myform"  method="get">
+                    <input type="text" id="searchtxt" placeholder="Search">
                 </form>
 
             </div>
@@ -82,13 +62,16 @@
             </div>
         </nav>
     @endauth
-
 </div>
 
 <main class="py-4">
+    <div id="demo" class="container d-flex justify-content-center">
+
+    </div>
     @yield('content')
 </main>
 <script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/search.js') }}" async></script>
 </body>
 
 </html>

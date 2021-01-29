@@ -42,8 +42,9 @@ Route::middleware('auth')->group( function (){
 
     Route::get('/{user:username}/upload', [UploadController::class, 'show'])->name('upload.show');
     Route::post('/{user:username}', [UploadController::class, 'store'])->name('upload.store');
-    Route::get('/find/{user:username}', [SearchController::class, 'index'])->name('search');
     Route::post('/post/{post}/like', [PostLikesController::class, 'store'])->name('like');
-});
 
+});
+Route::get('/find/{any}', [SearchController::class, 'index'])->name('search');
+//Route::get('/found/{user:username}', [SearchController::class, 'show'])->name('found');
 
